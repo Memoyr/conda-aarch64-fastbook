@@ -14,7 +14,7 @@ You can git clone Fastbook, or create a new noteboook project.
 ### Use via Dockerfile
 ```bash
 $ docker build --no-cache  -t [name_of_image]:[tag_of_image] .
-$ docker run -p 8888:8888 [name_of_image]:[tag_of_image]
+$ docker run -it -p 8888:8888 -v ./project/notebooks:/notebooks [name_of_image]:[tag_of_image] jupyter lab --ip=0.0.0.0 --no-browser --allow-root --notebook-dir=/notebooks/
 ```
 
 ### Use via with docker-compose, local volume is set on path `project/notebooks`
@@ -23,8 +23,8 @@ $ docker run -p 8888:8888 [name_of_image]:[tag_of_image]
 $ docker-compose up --build
 ```
 
-Or if you need a fresh cash
+Or if you need a fresh cache
 ```bash
-$ docker-compose build --no-cahe
+$ docker-compose build --no-cache
 $ docker-compose up
 ```
