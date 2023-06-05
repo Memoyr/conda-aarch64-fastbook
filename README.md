@@ -1,7 +1,7 @@
 ## Dockerized Jupyterlab server with Fastai/Fastbook - conda based 
 
 
-The image created compatible with aarch64 (arm64) systems. 
+The image created is compatible with aarch64 (arm64) systems. 
 See Miniconda notes [here](https://github.com/conda-forge/miniforge#mambaforge)
 
 Once your container is running, jupyterlab will provide a link to open in a browser.
