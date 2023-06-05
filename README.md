@@ -13,7 +13,7 @@ You can git clone Fastbook, or create a new noteboook project.
 
 Use it with docker-compose or manually directly on Dockerfile.
 
-###  Use via with docker-compose
+###  Use with docker-compose
 
 Note: local volume is set on path `project/notebooks`
 
