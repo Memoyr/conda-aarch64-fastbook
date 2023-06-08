@@ -11,11 +11,13 @@ You can git clone Fastbook, or create a new noteboook project.
 
 ## Usage:
 
-Use it with docker-compose or manually directly on Dockerfile.
+- Use it with docker-compose or manually directly on Dockerfile.
+- `project` & `secrets` directory include some utility script to help with projects configuration.
 
 ###  Use with docker-compose
 
-Note: local volume is set on path `project/notebooks`
+Notes: 
+- workdir is set on path `notebooks` 
 
 ```bash
 $ docker-compose up --build
@@ -25,10 +27,13 @@ Or if you need a fresh cache
 ```bash
 $ docker-compose build --no-cache
 $ docker-compose up
+# Also, in an other console you can log in the active container 
+$ docker exec -it [active_container_name] /bin/bash
+
 ```
 
 ### Use via Dockerfile
 ```bash
 $ docker build --no-cache  -t [name_of_image]:[tag_of_image] .
-$ docker run -it -p 8888:8888 -v ./project/notebooks:/notebooks [name_of_image]:[tag_of_image] jupyter lab --ip=0.0.0.0 --no-browser --allow-root --notebook-dir=/notebooks/
+$ docker run -it -p 8888:8888 -v ./notebooks:/notebooks -v ./project:/project -v ./secrets:/secrets  [name_of_image]:[tag_of_image] jupyter lab --ip=0.0.0.0 --no-browser --allow-root --notebook-dir=/notebooks/
 ```

@@ -16,6 +16,8 @@ RUN apt-get update
 RUN apt-get install --assume-yes git
 RUN apt-get install --assume-yes wget
 RUN apt-get install --assume-yes curl
+RUN apt-get install --assume-yes vim
+RUN apt-get install --assume-yes unzip
 
 RUN curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh"
 RUN bash Miniforge3-Linux-aarch64.sh -p /miniconda -b
@@ -51,15 +53,21 @@ RUN jupyter nbextension enable collapsible_headings/main
 RUN jupyter nbextension enable --py widgetsnbextension
 RUN jupyter nbextension enable jupyterlab-git
 
-
 RUN rm -rf packages
 RUN rm Miniforge3-Linux-aarch64.sh
 
-COPY README.md README.md
 
+RUN mkdir /project
 RUN mkdir /notebooks
+RUN mkdir /secrets
+
+COPY . /project
+COPY . /notebooks
+COPY . /secrets
+
 WORKDIR /notebooks
-COPY . /notebooks/
+
+
 EXPOSE 8888
 
 # Start the JupyterLab server

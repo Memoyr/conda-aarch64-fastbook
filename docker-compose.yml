@@ -5,7 +5,10 @@ services:
     build:
       context: .
     init: true
+    tty: true
     volumes:
-      - ./project/notebooks:/notebooks
+      - ./project:/project
+      - ./notebooks:/notebooks
+      - ./secrets:/secrets
     ports:
       - '8888:8888'
