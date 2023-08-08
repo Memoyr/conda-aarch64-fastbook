@@ -23,7 +23,8 @@ Put the file into your /secrets
 
 ```bash
 $ chmod 600 /secrets/kaggle.json
-$ cp /secrets/kaggle.json  ~/.kaggle
+$ mkdir ~/.kaggle
+$ cp /secrets/kaggle.json  ~/.kaggle/kaggle.json
 $ mkdir /notebooks/your_project_name
  ```
 
