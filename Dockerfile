@@ -19,6 +19,9 @@ RUN apt-get install --assume-yes curl
 RUN apt-get install --assume-yes vim
 RUN apt-get install --assume-yes unzip
 
+# Needed for unstructured[all-docs]
+#RUN apt-get install --assume-yes python3.10-dev gcc
+
 RUN curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh"
 RUN bash Miniforge3-Linux-aarch64.sh -p /miniconda -b
 
@@ -26,6 +29,12 @@ ENV PATH=/miniconda/bin:${PATH}
 RUN conda update -y conda
 
 ARG PY_VER
+
+RUN pip install "unstructured[jpeg,png,csv]"
+
+# Use with Langchain
+RUN pip install langsmith
+# About pydantic below : https://github.com/langchain-ai/langchain/issues/8361#issuecomment-1655141355
 
 # Install packages from conda and downgrade py (optional).
 RUN conda install -c anaconda -y python=${PY_VER}
@@ -35,14 +44,17 @@ RUN conda install -c anaconda -y \
     conda install -c anaconda ipywidgets  &&\
     conda install -c fastchan fastai &&\
     conda install -c fastchan fastbook &&\
+    conda install pydantic -c conda-forge  &&\
+    conda install langchain -c conda-forge &&\
     conda install jupyterlab &&\
     conda install -c conda-forge jupyter_contrib_nbextensions &&\
     conda install -c conda-forge jupyter_nbextensions_configurator &&\
-    conda install -c conda-forge jupyterlab-git
+    conda install -c conda-forge jupyterlab-git &&\
+    conda install -c conda-forge -y python-dotenv
 
 
 # Install torchaudio  with pip since there's an issue in version cpuonly in conda pkg
-RUN pip install torchaudio 
+RUN pip install torchaudio
 
 # enable jupyter extensions
 RUN jupyter contrib nbextension install
