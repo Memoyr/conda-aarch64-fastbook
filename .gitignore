@@ -8,3 +8,7 @@
 
 notebooks/*
 secrets/*
+
+
+# local env files
+.env*.*
