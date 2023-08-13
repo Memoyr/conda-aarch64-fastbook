@@ -1,3 +1,5 @@
+* Update(s) - this image also serve as an ai-lab, so it might evolve and won't only serve fastai dev.
+
 ## Dockerized Jupyterlab server with Fastai/Fastbook - conda based 
 
 
